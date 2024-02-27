@@ -12,6 +12,7 @@ const [to,setto]=useState("inr")
 
 const [convertedamount,setconvertedamount]=useState(0)
 
+console.log(from);
 const currencyinfo=usecurrencyinfo(from)
 
 const options=Object.keys(currencyinfo)
