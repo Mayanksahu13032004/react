@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <h1>Lear abiout toolhot</h1>
-      <AddTodo/>
+      <AddTodo/> 
       <Todos/>
 
     </>
