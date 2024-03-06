@@ -60,6 +60,20 @@ export default function Header() {
                                 </NavLink>
                             </li>
                             
+
+                            <li>
+                                <NavLink
+                                to="/todo"
+                                    className={({isActive}) =>
+                                        `block py-2 pr-4 pl-3 ${isActive ? "text-orange-400" :"text-gray-500"} duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                                    }
+                                >
+                                    Todo
+                                </NavLink>
+                            </li>
+                            
+
+
                         </ul>
                     </div>
                 </div>
