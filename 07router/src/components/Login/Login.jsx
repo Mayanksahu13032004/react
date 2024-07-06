@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
-const cors=require('cors')
+
 function Login() {
 
+  
+
+  
 const [user,setuser]=useState({
   name:"",
   email:"",
   Password:""
 })
+
+const [message,setmessage]=useState('')
+
 
 const handleinput=(e)=>{
   console.log(e);
@@ -27,27 +33,47 @@ const handlesubmit=async(e)=>{
     },
     body:JSON.stringify(user)
   })
+  console.log("the error",Error);
+  console.log("the response",response);
+  
+setmessage(response.formData.message)
+
+  // if(response.status==201){
+    
+  //   console.log("Uaer registre successfully");
+  // }else{
+  //   console.log("User not registre")
+  // }
 
 
-  console.log(response);
 }catch(error){
-  console.log(error);
-}
-}
+  console.log("Error is",error);
 
+
+  
+  if(error.response && error.response.status===409){
+    setmessage(error.response.data.message)
+  }else{
+    setmessage('An error occurred. Please try again.');
+  }
+}
+}
 
 
   return (
-    // <div className='h-full p-80 w-500 text-white text-3xl  bg-green-500'>Login Form</div>
-    <div className='d-flex justify-content-center align-items-center bg-secondary vh-100'>
-    <h1 className='color-green font-bold  bg-orange-500 background'>Login page</h1>
-    <p className='font-bold size-24'>shree radhe</p>
-    <div className='bg-white p-3 rounded w-25'>
-<h2>Register</h2>
+
+    
+<div className='text-center  bg-slate-400 h-screen'> 
+
 <form>
-  <div className='mb-3'>
+
+
+
+
+
+  <div className='mb-6 p-4 text-3xl'>
     <label htmlFor="name">
-      <strong>Name</strong>
+      <strong>Name:</strong>
     </label>
 <input 
 type="text" 
@@ -61,24 +87,37 @@ onChange={handleinput}
 
 
 
- <div className='mb-3'>
+
+
+
+
+
+ <div className='mb-6 text-3xl'>
   <label htmlFor="email">
-    <strong>Email</strong>
+    <strong>Email:</strong>
   </label>
   <input 
 type="email" 
 placeholder='Enter Email'
 autoComplete='off'
 name="email"
+
+
+
+
 className='form-control rounded-0'
 onChange={handleinput}
 />
  </div>
 
 
- <div className='mb-3'>
+
+
+
+
+ <div className='mb-6 text-3xl'>
   <label htmlFor="email">
-    <strong>Password</strong>
+    <strong>Password:</strong>
   </label>
   <input 
 type="Password" 
@@ -89,13 +128,20 @@ className='form-control rounded-0'
 onChange={handleinput}
 />
  </div>
-<button onClick={handlesubmit} type='submit' className='btn btn-success w-100 rounded-0'>Register</button>
-<p>Already have an account</p>
-<button className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Login</button>
+
+
+
+<button onClick={handlesubmit}  type='submit' className='btn mb-6 text-3xl btn-success w-100 rounded-0'>Register</button>
+
+
+
+
+
+<p className='mb-6 text-3xl '>Already have an account</p>
+<button className='btn btn-default border w-100 bg-light rounded-0 mb-6 text-3xl text-decoration-none'>Login</button>
 </form>
-    </div>
-   </div>
-    
+    {message && <p>{message}</p>}
+    </div>    
   )
 }
 
