@@ -1,32 +1,115 @@
-import React from 'react'
 
-export default function About() {
-  return (
-      <div className="py-16 bg-white">
-          <div className="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
-              <div className="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
-                  <div className="md:5/12 lg:w-5/12">
-                      <img
-                          src="https://tailus.io/sources/blocks/left-image/preview/images/startup.png"
-                          alt="image"
-                      />
-                  </div>
-                  <div className="md:7/12 lg:w-6/12">
-                      <h2 className="text-2xl text-gray-900 font-bold md:text-4xl">
-                          React development is carried out by passionate developers
-                      </h2>
-                      <p className="mt-6 text-gray-600">
-                          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum omnis voluptatem
-                          accusantium nemo perspiciatis delectus atque autem! Voluptatum tenetur beatae unde
-                          aperiam, repellat expedita consequatur! Officiis id consequatur atque doloremque!
-                      </p>
-                      <p className="mt-4 text-gray-600">
-                          Nobis minus voluptatibus pariatur dignissimos libero quaerat iure expedita at?
-                          Asperiores nemo possimus nesciunt dicta veniam aspernatur quam mollitia.
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  );
+    import React, { useState } from 'react';
+    // import axios from 'axios';
+    import './app.css';
+    
+    function About (){
+      const [user,setUser]=useState({
+        OPDNo:"",
+      });
+
+      // const [message,setMessage]=useState('');
+      const [data,setdata]=useState(null);
+      
+const handleInput=(e)=>{
+  const name = e.target.name;
+    const value = e.target.value;
+
+    setUser({ ...user, [name]: value });
+    // console.log("OPDNo is",OPDNo);
 }
+console.log("shree radhe");
+
+
+const handleSubmit=async(e)=>{
+  e.preventDefault();
+  console.log(user);
+
+
+
+try{
+  const response=await fetch('http://localhost:3000/api/v1/patient/searchPatientByOPD',{
+    method: "POST",
+    headers: {
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify(user)
+  });
+
+console.log("complete try");
+
+setdata(response.data);
+
+// const responseData = await response.json();
+
+
+// if (response.status === 201) {
+//   setMessage(responseData.message);
+//   console.log("patient registered successfully");
+// } else {
+//   setMessage(responseData.message || 'User not registered');
+// }
+} catch (error) {
+throw error
+}
+
+
+
+
+}
+
+
+
+     
+      return (
+        <div className="App">
+          <h1>Find User by User Number</h1>
+
+
+         
+         
+          <div className='mb-6 text-3xl'>
+          <label htmlFor="OPDNo">
+            <strong>OPDNo</strong>
+          </label>
+          <input
+            type="number"
+            placeholder='Enter OPDNo'
+            autoComplete='off'
+            name="OPDNo"
+            className='form-control rounded-0'
+            onChange={handleInput}
+          />
+        </div>
+
+
+
+
+          <button onClick={handleSubmit}>Fetch User</button>
+          {/* {<p className='text-4xl '>{message}</p>} */}
+         
+
+
+        
+
+
+
+
+
+
+
+
+        </div>
+      );
+    };
+    
+    export default About;
+    
+
+
+
+
+
+    
+
+  

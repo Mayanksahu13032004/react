@@ -13,13 +13,13 @@ export default function Header() {
                             alt="Logo"
                         />
                     </Link>
-                    <div className="flex items-center lg:order-2">
+                    <div className="flex items-center lg:order-2 btn mb-4 text-3xl bg-orange-50 btn-success  rounded-xl hover:text-white hover:bg-gray-500">
                         <Link
                             to="login"
                             className={({isActive})=>
                             `text-gray-800 hover:bg-gray-50 focus:ring-4 ${isActive ? "text-orange-700" : "text-gray-700"} focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none`
     }>
-                            Log in
+                            Register
                         </Link>
                         <Link
                             to="Getstarted"
@@ -27,7 +27,7 @@ export default function Header() {
                           className={({isActive})=>
                           `text-white ${isActive ? "text-orange-700" : "text-gray-700"} bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none`
 }>
-                            Get started
+                            Login
                         </Link>
                     </div>
                     <div

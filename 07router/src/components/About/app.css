@@ -1,0 +1,25 @@
+.App {
+    text-align: center;
+  }
+  
+  input {
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+  }
+  
+  .user-details {
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 20px;
+  }
+  
